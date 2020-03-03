@@ -1,0 +1,36 @@
+(之前工作待填补进来！)
+
+2020年3月2日
+工作任务：
+1.	看完Shekkizh的tensorflow代码，了解清楚它的输入输出部分和FCN网络部分搭建
+2.	尝试使输出的分割结果可以彩色化显示，并有客观的分析数据；尝试将热红外图像输入到网络中并跑出结果。
+工作记录：
+1.	调试和学习FCN.py代码
+1）输入图尺寸：224*224*3
+输入label图尺寸：224*224*1
+       2）模块scipy.io的函数loadmat和savemat可以实现Python对mat数据的读写
+scipy.io.loadmat(file_name, mdict=None, appendmat=True, **kwargs)
+scipy.io.savemat(file_name, mdict, appendmat=True, format='5', 
+long_field_names=False, do_compression=False, oned_as='row')
+       3）queeze 函数：从数组的形状中删除单维度条目，即把shape中为1的维度去掉
+用法：numpy.squeeze(a,axis = None)
+       4）图像预处理中有去均值的步骤，目的是为了使图像每个维度均值为0，利于归一化处理，方便网络训练。
+       5）疑问：conv_final_layer = image_net["conv5_3"]，为什么没有选择conv5_4呢？
+       6）pool5 = utils.max_pool_2x2(conv_final_layer) 第五层的pooling是Maxpooling，前面4层是Avgpooling
+       7）tf.stack() 和 tf.concat()的区别
+       8）交叉熵损失函数的计算方式：tf.nn.sparse_softmax_cross_entropy_with_logits()
+       9）Adam优化器：optimizer = tf.train.AdamOptimizer(FLAGS.learning_rate)
+工作总结：
+1.	Shekkizh写的代码比较清晰易读，应该多学习其中的代码要领。
+2.	试着将热红外图像用于测试，还没有成功，明天再试。
+
+2020年3月3日星期二
+工作任务：
+1.	尝试测试热红外输入图像，并得到分割结果。
+2.	找关于语义分割客观评价标准mIOU的代码，并对上述结果做客观分析。
+工作记录：
+1.	关于测试图像的输入部分，由于要将三维图像拓展为四维，一开始利用tf.expand_dims死活都不行，后来查明原因是不能使输入部分变为tensor，改用np.reshape()就可以了。
+2.	开始在GitHub上下载Deeplab的相关tensorflow代码，开始对DeepLab的研究。
+3.	下载了Drsleep的GitHub文档，他的代码可以训练其他训练集。
+工作总结：
+1.	早上的工作效率还得提高！这个星期得基本完成组会工作
