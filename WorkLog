@@ -53,3 +53,7 @@ long_field_names=False, do_compression=False, oned_as='row')
  2.将模型尽可能部署到硬件设备上（9月-12月）
   （1）利用量化、剪枝等方法对模型进行加速
   （2）与部署硬件的搭配等。
+  
+20200614 细致梳理MFNet代码 code review
+具体工作见文档  
+  
